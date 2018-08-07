@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <title>Tareas VueJS</title>
+     
+</head>
+<body>
+
+     <div class="container my-4">
+          <div id="taskApp">
+                    <h1 class="mb-4"> {{message}} </h1>
+                    <table class="table table-hover">
+                    <thead>
+                         <tr>
+                              <th>Estado</th>
+                              <th>#</th>
+                              <th>task</th>
+                              <th>description</th>
+                              <th>Eliminar</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <tr v-for="item in tareas">
+                              <th scope="row"> <input type="checkbox" v-model="item.estado"> </th>
+                              <th scope="row"> {{item.id}} </th>
+                              <td> {{item.title}} </td>
+                              <td> {{item.description}} </td>
+                              <td><button v-on:click="eliminarTarea(item)" class="btn btn-danger">Eliminar</button> </td>
+                         </tr>
+                    </tbody>
+               </table>
+          </div>
+     </div>
+     
+     
+     <div class="container">
+               <hr>
+          <div id="app-2">
+               <p> {{message}} </p>
+          </div>
+     </div>
+     
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     <script>
+          new Vue({
+               el: '#taskApp',
+               data: {
+                    message: 'Hello World en Vuejs CDN',
+
+                    tareas : [
+                         {
+                              id: 1,
+                              title: "task1",
+                              description: "example 1",
+                              estado : false
+                         },
+                         {
+                              id: 2,
+                              title: "task2",
+                              description: "example 2",
+                              estado : false
+                         },
+                         {
+                              id: 3,
+                              title: "task3",
+                              description: "example 3",
+                              estado : false
+                         }
+                    ]
+
+               },
+               methods : {
+                    eliminarTarea: function (item){
+                         alert("Eliminando");
+                         this.tareas.splice(this.tareas.indexOf(item),1)
+                    }
+               }
+          })
+
+          const app2 = new Vue({
+               el: '#app-2',
+               data:{
+                    message : 'Creando una variable constante Y asignando una instancia de VUE'
+               }
+          })
+
+          app2.message = 'Programming for Joel Ronceros Full Stack Dev'
+     </script>
+</body>
+</html>
